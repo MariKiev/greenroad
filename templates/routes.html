@@ -1,0 +1,45 @@
+{% if not ajax %}
+	{% extends "base.html" %}
+{% endif %}
+
+{% import "_macros.html" as macros %}
+{% block content %}
+
+<div class="container" id="routes">
+	<div class="row">
+		{% for track in tracks %}
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail article-preview">
+					<img src="{{ track.img }}" alt="{{ track.name }}">
+					<div class="caption">
+						<h3>{{ track.name }}</h3>
+						<h6><b>Длина маршрута: {{ track.length }}км, {{ track.day }} дня <br>
+						Сложность маршрута: {{ track.level }}</b></h6>
+						<div class="article-preview" style="min-height: 160px">{{ track.text|truncate(300)|safe }}</div>
+						<p><a href="{{ url_for('route', track_id=track.id) }}" class="btn btn-primary" role="button">Читать дальше</a></p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+    {% include '_macros.html' %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.routes') }}
+    </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('body').on('click', 'ul.pager a', function() {
+			$.ajax({
+				url: $(this).prop('href'),
+				success: function(response_html) {
+					$('div#routes').html(response_html);
+					$('body').scrollTop(1);
+				}
+			});
+			return false;
+		});
+	});
+</script>
+{% endblock %}

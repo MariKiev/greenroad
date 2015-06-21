@@ -1,0 +1,13 @@
+
+.article-preview p {
+    margin: 0;
+}
+
+.error {
+    color: red;
+}
+
+div ul.nav {
+  margin-top: 10px;
+  margin-right: 5px;
+}

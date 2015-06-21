@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="thumbnail">
+				<img src="{{ track.img }}" alt="{{ track.name }}">
+				<div class="caption">
+					<h3>{{ track.name }}</h3>
+					<h6><b>Длина маршрута: {{ track.length }}км, {{ track.day }} дня <br>
+					Сложность маршрута: {{ track.level }}</b></h6>
+					<p> {{ track.text | safe }}</p>
+					<p><b>Маршрут:</b><br>{{track.route}}</p>
+					<p><a href="{{ url_for('edit_route2', track_id=track.id) }}" class="btn btn-default" role="button">Редактировать</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

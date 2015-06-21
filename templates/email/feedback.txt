@@ -1,0 +1,4 @@
+Message from {{ email }}!
+
+Text of message:
+{{ comments }}

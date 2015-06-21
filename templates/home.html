@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Обгортка для слайдів -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img src="/static/slider0.jpg" alt="Ukraine">
+				<div class="carousel-caption">
+					<h3>Morning in the Carpathians</h3>
+					<p>Tracking to the Sinevir lake in June'14</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="/static/slider1.jpg" alt="Ukraine">
+				<div class="carousel-caption">
+					<h3>Carpathian views</h3>
+					<p>Tracking on Polonyna Borzhava in June'13</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="/static/slider2.jpg" alt="Ukraine">
+				<div class="carousel-caption">
+					<h3>Clouds in the Carpathians</h3>
+					<p>Tracking on Polonyna Borzhava in June'13</p>
+		  		</div>
+			</div>
+		</div>
+
+		<!-- Управління -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Prev</span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+<br>
+<div class="container">
+	<div class="row">
+		{% for track in tracks %}
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="{{ track.img }}" alt="{{ track.name }}">
+					<div class="caption">
+						<h3>{{ track.name }}</h3>
+						<h6><b>Длина маршрута: {{ track.length }}км, {{ track.day }} дня <br>
+						Сложность маршрута: {{ track.level }}</b></h6>
+						<div class="article-preview" style="min-height: 160px"> {{ track.text|truncate(300)|safe }}</div>
+						<p><a href="{{ url_for('route', track_id=track.id) }}" class="btn btn-primary" role="button">Читать дальше</a></p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}	
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+
+Dear, {{ user.username }}!
+
+Welcome to Green road community!
+
+To confirm your account please click on the following link:
+{{ url_for('confirm', token=token, _external=True) }}
+
+Note: replies to this email address are not monitored.
+
+Sincerely,
+    Green road Team
+
+
+
+

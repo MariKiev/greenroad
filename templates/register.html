@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div><h4><b>Please, enter your name, email and password for registration</b></h4></div>
+	<form enctype="multipart/form-data" method="Post">
+	    {{ form.csrf_token }}
+	    <div class="form-group">
+            {% if form.name.flags.required %}<span class="error">*</span>{% endif %}
+            {{ form.name.label }}
+            {{ form.name(class='form-control', style="width: 25%") }}
+            {% if form.errors.name %}
+                {%  for error in form.errors.name %}
+                    <span class="error">{{ error }}</span>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {% if form.email.flags.required %}<span class="error">*</span> {% endif %}
+            {{ form.email.label }}
+            {{ form.email(class="form-control", id="exampleInputEmail1", placeholder="Enter email", style="width: 25%") }}
+            {% if form.errors.email %}
+                {% for error in form.errors.email %}
+                    <span class="error">{{ error }}</span>
+                    <br>
+                {%  endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {% if form.password.flags.required %}<span class="error">*</span>{% endif %}
+            {{ form.password.label }}
+            {{ form.password(class="form-control", id="exampleInputPassword1", placeholder="Password", style="width: 25%") }}
+            {% if form.errors.password %}
+                {% for error in form.errors.password %}
+                    <span class="error">{{ error }}</span>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {% if form.check_password.flags.required %}<span class="error">*</span>{% endif %}
+            {{ form.check_password.label }}
+            {{ form.check_password(class="form-control", id="exampleInputPassword1", placeholder="Confirm your password", style="width: 25%") }}
+            {% if form.errors.check_password %}
+                {% for error in form.errors.check_password %}
+                    <span class="error">{{ error }}</span>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="checkbox">
+            <label>
+                 {{  form.remember_me }}
+                <input type="checkbox">Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div><h4><b>Редактор маршрута:</b></h4></div>
+	<form enctype="multipart/form-data" method="Post">
+		<div class="form-group">
+			<label for="">Название маршрута:</label>
+			<input type="text" name="name" value="{{ track.name }}" class="form-control" style="width: 30%">
+		</div>
+		<div class="form-group">
+			<label for="">Длина маршрута в км:</label>
+			<input type="text" name="length" value="{{ track.length }}" class="form-control" style="width: 15%">
+		</div>
+		<div class="form-group">
+			<label for="">Длина маршрута в днях:</label>
+			<input type="text" name="day" value="{{ track.day }}" class="form-control"style="width: 15%">
+		</div>
+		<div class="form-group">
+			<label for="">Сложность маршрута:</label>
+				<select name="level" class="form-control" style="width: 30%">
+					<option>низкая</option>
+					<option>средняя</option>
+					<option>выше среднего</option>
+					<option>высокая (необходима спец. подготовка)</option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label>Описание маршрута:</label>
+			<textarea name="text" class="form-control" rows="3" placeholder="Описание маршрута" style="width:100%;  height:225px">{{ track.text }}</textarea>
+		</div>
+
+		<div class="form-group">
+			<label for="">Ключевые точки маршрута:</label>
+			<textarea name="route" class="form-control" rows="3" placeholder="Ключевые точки маршрута" style="width:100%;  height:75px"> {{ track.route }}</textarea>
+		</div>
+		<div>
+			<label>Загрузить фото маршрута:</label>
+			{% if track.img %}
+			    <img src="{{ track.img }}" />
+			{% endif %}
+			<input type="file" name="img"  multiple accept="image/*">
+		</div>
+		<br>
+		<button type="submit" class="btn btn-default">Опубликовать</button>
+	</form>
+	<br>
+</div>
+{% endblock %}

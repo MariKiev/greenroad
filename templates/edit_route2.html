@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div><h4><b>Редактор маршрута:</b></h4></div>
+	<form enctype="multipart/form-data" method="Post" data-id="{{ track_id }}"  id="edit-route-form">
+	    {{ form.csrf_token }}
+		<div class="form-group">
+		    {% if form.name.flags.required %}<span class="error">*</span> {% endif %}{{ form.name.label }}
+		    {{ form.name(class='form-control', style='width: 30%') }}
+		    {% if form.errors.name %}
+		        {% for error in  form.errors.name %}
+		            <span class="error">{{ error }}</span>
+                {% endfor %}
+		    {% endif %}
+		</div>
+		<div class="form-group">
+		    {% if form.length.flags.required %}<span class="error">*</span> {% endif %}
+		    {{ form.length.label }}
+		    {{ form.length(class='form-control', style='width: 15%') }}
+		    {% if form.errors.length %}
+		        {% for error in form.errors.length %}
+		            <span class="error">{{ error }}</span>
+		        {% endfor %}
+		    {% endif %}
+		</div>
+		<div class="form-group">
+		    {% if form.day.flags.required %}<span class="error">*</span>{% endif %}
+		    {{ form.day.label }}
+		    {{ form.day(class='form-control', style='width: 15%') }}
+		    {% if form.errors.day %}
+		        {% for error in form.errors.day %}
+		            <span class="error">{{ error }}</span>
+		        {% endfor %}
+            {% endif %}
+		</div>
+		<div class="form-group">
+		    {% if form.level.flags.required %}<span class="error">*</span>{% endif %}
+		    {{ form.level.label }}
+		    {{ form.level(class='form-control', style='width: 30%') }}
+		     {% if form.errors.level %}
+		        {% for error in form.errors.level %}
+		            <span class="error">{{ error }}</span>
+		        {% endfor %}
+            {% endif %}
+		</div>
+		<div class="form-group">
+		    {% if form.text.flags.required %}<span class="error">*</span>{% endif %}
+		    {{ form.text.label }}
+		    {{ form.text(class_='form-control', style='width:100%;  height:225px') }}
+		     {% if form.errors.text %}
+		        {% for error in form.errors.text %}
+		            <span class="error">{{ error }}</span>
+		        {% endfor %}
+            {% endif %}
+            <script>
+                CKEDITOR.replace('text',
+                    {
+                        customConfig : '',
+                        uiColor : '#9AB8F3'
+                    });
+            </script>
+		</div>
+
+		<div class="form-group">
+		    {% if form.route.flags.required %}<span class="error">*</span>{% endif %}
+		    {{ form.route.label }}
+		    {{ form.route(class_='form-control', style='width:100%;  height:75px') }}
+		    {% if form.errors.route %}
+		        {% for error in form.errors.route %}
+		            <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+		</div>
+		<div>
+		    {{ form.img.label }}
+			{% if form.img.data %}
+			    <img src="{{ form.img.data }}">
+			{% endif %}
+    		<input type="file" name="img"  multiple accept="image/*">
+            {% if form.errors.img %}
+                {% for error in form.errors.img %}
+                     <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+		</div>
+		<br>
+		<button type="submit" class="btn btn-default">Опубликовать</button>
+	</form>
+	<br>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$form = $('form#edit-route-form');
+		validateForm('/edit_route/' + $form.data('id') + '/','form#edit-route-form');
+	});
+</script>
+{% endblock %}
