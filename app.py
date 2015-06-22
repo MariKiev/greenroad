@@ -23,6 +23,8 @@ app.config['MAIL_PASSWORD'] = MAIL_PASSWORD
 app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
 app.config['FLASKY_MAIL_SENDER'] = FLASKY_MAIL_SENDER
 
+app.debug = True
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
