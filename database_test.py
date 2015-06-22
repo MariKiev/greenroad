@@ -29,12 +29,9 @@ def main():
     db.session.add(Role('Admin_role'))
 
     db.session.add(Role('User_role'))
-
-    db.session.add(User('John', 'User'))
-
-    db.session.add(User('Anton', 'User'))
-
-    db.session.add(User('Marina', 'Admin'))
+    admin = User('Marina', 'iam.marik@gmail.com', 'test', True, 1)
+    admin.confirmed = True
+    db.session.add(admin)
 
     db.session.commit()
 
