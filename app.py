@@ -8,11 +8,11 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.mail import Mail
 from flask.ext.login import LoginManager
 
-from settings import MAIL_USERNAME, MAIL_PASSWORD, FLASKY_MAIL_SENDER, SECRET_KEY
+from settings import MAIL_USERNAME, MAIL_PASSWORD, FLASKY_MAIL_SENDER, SECRET_KEY, DB_URL
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath(os.path.join('..', 'app.db'))
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
