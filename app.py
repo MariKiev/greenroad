@@ -38,7 +38,7 @@ login_manager.init_app(app)
 
 mail = Mail(app)
 
+from views import *
 
 if __name__ == '__main__':
-    from views import *
     app.run(debug=True)

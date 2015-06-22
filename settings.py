@@ -1,4 +1,4 @@
-import os.environ
+import os
 IMAGE_MAXSIZEX = 360
 IMAGE_MAXSIZEY = 250
 
